@@ -30,7 +30,7 @@ export default function Mesure({ legende, lignes, lecture }) {
           </div>
         )
       })}
-      {lecture && <p className="mesure__lecture">{lecture}</p>}
+      {lecture && <p className="lecture">{lecture}</p>}
     </figure>
   )
 }

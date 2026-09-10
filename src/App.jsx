@@ -8,6 +8,7 @@ import {
   identite,
   methode,
   parcours,
+  projets,
   travaux,
 } from './content/fr'
 import './App.css'
@@ -25,6 +26,7 @@ export default function App() {
           <a href="#methode">{methode.titre}</a>
           <a href="#travaux">{travaux.titre}</a>
           <a href="#parcours">{parcours.titre}</a>
+          <a href="#projets">{projets.titre}</a>
           <a href="#competences">{competences.titre}</a>
           <a href="#contact">{contact.titre}</a>
         </nav>
@@ -33,6 +35,7 @@ export default function App() {
       <main id="contenu" className="page">
         <div className="accueil">
           <h1 className="accueil__enonce">{accueil.enonce}</h1>
+          <p className="accueil__coda">{accueil.coda}</p>
           <div className="accueil__corps">
             <p className="accueil__positionnement">{accueil.positionnement}</p>
             <p className="accueil__situation">{accueil.situation}</p>
@@ -56,11 +59,15 @@ export default function App() {
             <article className="etude" key={etude.titre}>
               <h3 className="etude__titre">{etude.titre}</h3>
               <p className="etude__texte">{etude.texte}</p>
-              <Mesure
-                legende={etude.mesure.legende}
-                lignes={etude.mesure.lignes}
-                lecture={etude.mesure.lecture}
-              />
+              {etude.complement && <p className="etude__texte">{etude.complement}</p>}
+              {etude.mesure && (
+                <Mesure
+                  legende={etude.mesure.legende}
+                  lignes={etude.mesure.lignes}
+                  lecture={etude.mesure.lecture}
+                />
+              )}
+              {etude.lecture && <p className="lecture">{etude.lecture}</p>}
             </article>
           ))}
         </Section>
@@ -85,6 +92,17 @@ export default function App() {
               )}
             </article>
           ))}
+        </Section>
+
+        <Section id="projets" titre={projets.titre}>
+          <div className="projets">
+            {projets.liste.map((projet) => (
+              <article key={projet.titre}>
+                <h3 className="projet__titre">{projet.titre}</h3>
+                <p className="projet__texte">{projet.texte}</p>
+              </article>
+            ))}
+          </div>
         </Section>
 
         <Section id="competences" titre={competences.titre}>
@@ -128,6 +146,7 @@ export default function App() {
               </div>
             ))}
           </div>
+          <p className="contact__lieu">{contact.lieu}</p>
         </Section>
       </main>
 

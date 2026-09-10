@@ -70,6 +70,15 @@
   text-wrap: balance;
 }
 
+.accueil__coda {
+  max-width: 38ch;
+  margin-top: var(--e3);
+  font-family: var(--serif);
+  font-size: var(--t-etude);
+  line-height: 1.25;
+  color: var(--ink-soft);
+}
+
 .accueil__corps {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -90,10 +99,19 @@
 
 @media (min-width: 60em) {
   .accueil__enonce {
-    max-width: 15ch;
+    max-width: 17ch;
   }
 
-  .accueil__corps {
+  .accueil__coda {
+  max-width: 38ch;
+  margin-top: var(--e3);
+  font-family: var(--serif);
+  font-size: var(--t-etude);
+  line-height: 1.25;
+  color: var(--ink-soft);
+}
+
+.accueil__corps {
     margin-left: calc(var(--rail) + var(--e5));
   }
 }
@@ -243,7 +261,7 @@
 
 /* La lecture du chiffre : à quoi il engage, en langue courante.
    Le filet à gauche la rattache aux barres qu'elle commente. */
-.mesure__lecture {
+.lecture {
   margin-top: var(--e3);
   padding-left: var(--e2);
   border-left: 1px solid var(--baseline);
@@ -315,6 +333,29 @@
   background: var(--baseline);
 }
 
+.projets {
+  display: grid;
+  gap: var(--e4);
+}
+
+.projet__titre {
+  font-family: var(--serif);
+  font-size: var(--t-etude);
+  text-wrap: balance;
+}
+
+.projet__texte {
+  max-width: 60ch;
+  margin-top: var(--e1);
+}
+
+@media (min-width: 45em) {
+  .projets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--e5) var(--e4);
+  }
+}
+
 /* Compétences ----------------------------------------------------------- */
 
 .competences {
@@ -377,6 +418,12 @@
   font-family: var(--serif);
   font-size: var(--t-etude);
   line-height: 1.25;
+}
+
+.contact__lieu {
+  margin-top: var(--e4);
+  color: var(--ink-soft);
+  font-size: var(--t-petit);
 }
 
 .contact__liens {
