@@ -25,7 +25,7 @@ jobs:
       - name: Deploy via SFTP
         uses: wangyucode/sftp-upload-action@v3
         with:
-          host: ${{ secrets.FTP_HOST }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           localDir: 'dist'
