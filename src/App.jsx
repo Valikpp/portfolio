@@ -1,3 +1,4 @@
+import Deplier from './components/Deplier'
 import Mesure from './components/Mesure'
 import Section from './components/Section'
 import Sommaire from './components/Sommaire'
@@ -5,8 +6,10 @@ import {
   accueil,
   competences,
   contact,
+  deplier,
   formation,
   identite,
+  mesure,
   methode,
   parcours,
   projets,
@@ -86,16 +89,19 @@ export default function App() {
               {travaux.etudes.map((etude, i) => (
                 <article className="etude" id={ancreEtude(i)} key={etude.titre}>
                   <h3 className="etude__titre">{etude.titre}</h3>
-                  <p className="etude__texte">{etude.texte}</p>
-                  {etude.complement && <p className="etude__texte">{etude.complement}</p>}
                   {etude.mesure && (
                     <Mesure
                       legende={etude.mesure.legende}
                       lignes={etude.mesure.lignes}
                       lecture={etude.mesure.lecture}
+                      contre={mesure.contre}
                     />
                   )}
                   {etude.lecture && <p className="lecture">{etude.lecture}</p>}
+                  <Deplier ouvrir={deplier.etude} fermer={deplier.replier}>
+                    <p className="etude__texte">{etude.texte}</p>
+                    {etude.complement && <p className="etude__texte">{etude.complement}</p>}
+                  </Deplier>
                 </article>
               ))}
             </Section>
@@ -110,13 +116,27 @@ export default function App() {
                   <p className="poste__intitule">{poste.intitule}</p>
                   <p className="poste__contexte">{poste.contexte}</p>
                   {poste.points.length > 0 && (
-                    <ul className="poste__points">
-                      {poste.points.map((point) => (
-                        <li className="poste__point" key={point}>
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
+                    <Deplier ouvrir={deplier.poste} fermer={deplier.replier}>
+                      <ul className="poste__points">
+                        {poste.points.map((point) => {
+                          const { texte, renvoi } =
+                            typeof point === 'string' ? { texte: point } : point
+                          return (
+                            <li className="poste__point" key={texte}>
+                              {texte}
+                              {renvoi && (
+                                <>
+                                  {' '}
+                                  <a className="poste__renvoi" href={`#${ancreEtude(renvoi - 1)}`}>
+                                    {deplier.renvoi}
+                                  </a>
+                                </>
+                              )}
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </Deplier>
                   )}
                 </article>
               ))}

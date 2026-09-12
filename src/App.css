@@ -346,6 +346,65 @@
   margin-top: var(--e2);
 }
 
+/* Détail repliable ------------------------------------------------------ */
+
+.deplier {
+  margin-top: var(--e3);
+}
+
+.deplier__bouton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e1);
+  padding-block: 0.25rem;
+  list-style: none;
+  font-size: var(--t-petit);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.deplier__bouton::-webkit-details-marker {
+  display: none;
+}
+
+/* Un plus qui devient moins : le trait vertical disparaît à l'ouverture. */
+.deplier__bouton::before {
+  content: '';
+  flex: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat;
+}
+
+.deplier[open] > .deplier__bouton::before {
+  background: linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat;
+}
+
+.deplier__bouton:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--ultramarine);
+  text-underline-offset: 0.2em;
+}
+
+.deplier__fermer,
+.deplier[open] > .deplier__bouton .deplier__ouvrir {
+  display: none;
+}
+
+.deplier[open] > .deplier__bouton .deplier__fermer {
+  display: inline;
+}
+
+.poste .deplier {
+  margin-top: var(--e1);
+}
+
+.poste__renvoi {
+  white-space: nowrap;
+}
+
 /* La mesure : une valeur ne se montre jamais sans sa référence ----------- */
 
 .mesure {
@@ -357,70 +416,83 @@
   font-size: var(--t-meta);
   color: var(--ink-soft);
   letter-spacing: 0.02em;
-  margin-bottom: var(--e2);
+  margin-bottom: var(--e1);
 }
 
-.mesure__ligne + .mesure__ligne {
-  margin-top: var(--e2);
-}
-
-.mesure__entete {
+.mesure__chiffre {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  justify-content: space-between;
-  gap: var(--e2);
-  font-size: var(--t-petit);
+  gap: 0 var(--e2);
+}
+
+/* Chiffres tabulaires hérités : en chasse proportionnelle, le « 1 » d'Instrument
+   Sans se colle au point et « 0.189 » se lit mal. */
+.mesure__valeur {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ultramarine);
 }
 
 .mesure__label {
+  font-size: var(--t-petit);
   color: var(--ink-soft);
 }
 
-.mesure__valeur {
-  font-variant-numeric: tabular-nums;
-  color: var(--ultramarine);
-  font-weight: 600;
-}
-
-.mesure__ligne--reference .mesure__valeur {
+.mesure__reference {
+  margin-top: 0.25rem;
+  font-size: var(--t-petit);
   color: var(--ink-soft);
-  font-weight: 400;
 }
 
-.mesure__piste {
+.mesure__reference-valeur {
+  color: var(--ink);
+}
+
+/* Réglette 0–1 : un filet, un trait par valeur, à l'échelle réelle. */
+.mesure__echelle {
+  margin-top: var(--e3);
+}
+
+.mesure__axe {
   position: relative;
-  height: 0.375rem;
-  margin-top: 0.375rem;
-  background: color-mix(in srgb, var(--rule) 55%, transparent);
+  height: 1px;
+  background: var(--rule);
 }
 
-.mesure__barre {
+.mesure__repere {
   position: absolute;
-  inset-block: 0;
-  left: 0;
+  top: -0.375rem;
+  width: 2px;
+  height: 0.8125rem;
+  margin-left: -1px;
   background: var(--ultramarine);
 }
 
-.mesure__ligne--reference .mesure__barre {
+.mesure__repere--reference {
   background: var(--baseline);
+}
+
+.mesure__graduations {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.6875rem;
+  line-height: 1;
+  color: var(--ink-soft);
 }
 
 /* La lecture du chiffre : à quoi il engage, en langue courante.
    Le filet à gauche la rattache aux barres qu'elle commente. */
 .lecture {
+  max-width: 66ch;
   margin-top: var(--e3);
   padding-left: var(--e2);
   border-left: 1px solid var(--baseline);
   font-size: var(--t-petit);
 }
 
-.mesure__zero {
-  position: absolute;
-  inset-block: -3px;
-  left: 0;
-  width: 1px;
-  background: var(--baseline);
-}
 
 /* Parcours -------------------------------------------------------------- */
 

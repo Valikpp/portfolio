@@ -13,6 +13,17 @@ export const sommaire = {
   titre: 'Sommaire',
 }
 
+export const mesure = {
+  contre: 'contre',
+}
+
+export const deplier = {
+  etude: 'Lire l’étude',
+  poste: 'Voir le détail',
+  replier: 'Replier',
+  renvoi: 'Voir l’étude',
+}
+
 export const accueil = {
   enonce: 'Concevoir la mesure qui décide si un résultat est réel, puis livrer ce qu’elle valide.',
   coda: 'Il arrive qu’elle ne valide rien : c’est le résultat le moins attendu, et pas le moins utile.',
@@ -129,7 +140,20 @@ export const parcours = {
       intitule: 'Stagiaire data scientist',
       periode: 'févr. – août 2026',
       contexte: 'Plateforme d’analyse et de prédiction des tendances culturelles.',
+      // Un point avec « renvoi » pointe vers l'étude de même numéro dans Travaux
+      // au lieu d'en répéter le contenu.
       points: [
+        {
+          texte:
+            'Méthode de segmentation retenue en production, sélectionnée parmi 15 configurations évaluées sur 8 tests, à l’aide d’un banc de comparaison reproductible que j’ai construit : il rejoue en deux minutes l’étude entière, avec ses cinq espaces de représentation et ses sept annotations d’experts.',
+          renvoi: 1,
+        },
+        { texte: 'Moteur de rapprochement marque – artistes.', renvoi: 4 },
+        'Pipeline d’annotation par LLM industrialisé : trois workflows no-code remplacés par un service Python livré en production, avec suivi du coût par exécution, reprise après échec partiel et vérification automatique des sources citées.',
+        'Service porté par une file de travaux reposant sur PostgreSQL lui-même, sans courtier de messages, et par un exécuteur de migrations maison à registre de sommes de contrôle.',
+      ],
+      // Version d'origine, non affichée : à comparer avant de trancher.
+      pointsOriginaux: [
         'Méthode de segmentation retenue en production, sélectionnée parmi 15 configurations évaluées sur 8 tests, à l’aide d’un banc de comparaison reproductible que j’ai construit : il rejoue en deux minutes l’étude entière, avec ses cinq espaces de représentation et ses sept annotations d’experts.',
         'Moteur de rapprochement marque – artistes, comparé sur trois protocoles d’évaluation, avec une variante bayésienne pour les usages exigeant une probabilité calibrée.',
         'Pipeline d’annotation par LLM industrialisé : trois workflows no-code remplacés par un service Python livré en production, avec suivi du coût par exécution, reprise après échec partiel et vérification automatique des sources citées.',
@@ -143,6 +167,14 @@ export const parcours = {
       contexte:
         'Détection de republication non autorisée de photographies. Le cœur du modèle était hérité ; mon périmètre était la mesure, la fiabilité des données et l’industrialisation autour de lui.',
       points: [
+        {
+          texte: 'Taux de détection rendu interprétable et seuil de décision rendu réexaminable.',
+          renvoi: 5,
+        },
+        'Mesure reproductible : seuil, version applicative et horodatage gelés à chaque exécution ; vérité terrain annotée sur six niveaux avec un protocole versionné.',
+      ],
+      // Version d'origine, non affichée : à comparer avant de trancher.
+      pointsOriginaux: [
         'Seuil de décision rendu réexaminable : tous les candidats sont conservés, retenus comme rejetés, ce qui évite de relancer des recherches de plusieurs heures pour recalibrer.',
         'Taux de détection rendu interprétable : statuts d’échec typés, et distinction entre un score non calculable et un score réellement nul.',
         'Mesure reproductible : seuil, version applicative et horodatage gelés à chaque exécution ; vérité terrain annotée sur six niveaux avec un protocole versionné.',
