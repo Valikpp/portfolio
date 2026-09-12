@@ -6,16 +6,20 @@
 export const identite = {
   nom: 'Vadim Prokhorov',
   role: 'data scientist',
-  ecole: 'Télécom Paris — Institut Polytechnique de Paris',
+  ecole: 'Télécom Paris, Institut Polytechnique de Paris',
+}
+
+export const sommaire = {
+  titre: 'Sommaire',
 }
 
 export const accueil = {
   enonce: 'Concevoir la mesure qui décide si un résultat est réel, puis livrer ce qu’elle valide.',
   coda: 'Il arrive qu’elle ne valide rien : c’est le résultat le moins attendu, et pas le moins utile.',
   positionnement:
-    'Je travaille sur le versant mathématique de la data science — tests d’hypothèses, conception de métriques qu’aucune solution dégénérée ne peut gagner, modélisation bayésienne, géométrie des représentations — et je construis le service qui met le résultat entre les mains des équipes produit : Python, FastAPI, PostgreSQL, Docker, AWS.',
+    'Je travaille sur le versant mathématique de la data science, qu’il s’agisse de tests d’hypothèses, de conception de métriques qu’aucune solution dégénérée ne peut gagner, de modélisation bayésienne ou de géométrie des représentations. Je construis aussi le service qui met le résultat entre les mains des équipes produit : Python, FastAPI, PostgreSQL, Docker, AWS.',
   situation:
-    'Première année du cycle ingénieur à Télécom Paris — Institut Polytechnique de Paris, après une licence d’informatique mineure mathématiques obtenue à Sorbonne Université. Ouvert aux projets de recherche comme aux projets industriels.',
+    'Première année du cycle ingénieur à Télécom Paris, Institut Polytechnique de Paris, après une licence d’informatique mineure mathématiques obtenue à Sorbonne Université. Ouvert aux projets de recherche comme aux projets industriels.',
 }
 
 export const methode = {
@@ -51,10 +55,11 @@ export const travaux = {
   etudes: [
     {
       titre: 'Regrouper des données qui n’ont pas de groupes',
+      court: 'Données sans groupes',
       texte:
-        'Le résultat attendu de l’étude était « l’algorithme gagnant ». Le résultat réel : aucune structure de groupes naturelle n’existe dans ces données, et c’est l’annotation de référence elle-même qui fixe le plafond. Trois tests indépendants le montrent — statistique de Hopkins entre 0.54 et 0.60, co-association moyenne de 0.230 sur plusieurs centaines de milliers de paires, et un accord des experts entre eux plus faible que celui du meilleur algorithme avec eux.',
+        'Le résultat attendu de l’étude était « l’algorithme gagnant ». Le résultat réel : aucune structure de groupes naturelle n’existe dans ces données, et c’est l’annotation de référence elle-même qui fixe le plafond. Trois tests indépendants le montrent, à savoir une statistique de Hopkins entre 0.54 et 0.60, une co-association moyenne de 0.230 sur plusieurs centaines de milliers de paires et un accord des experts entre eux plus faible que celui du meilleur algorithme avec eux.',
       complement:
-        'J’ai arrêté là l’optimisation d’algorithme et redirigé le choix vers des critères produit : stabilité, équilibre, lisibilité. Le modèle retenu — un KMeans amorcé par les piliers, entièrement déterministe — donne les groupes les plus séparables de l’étude, avec un macro-F1 de 0.776 et une stabilité à la croissance de 0.715.',
+        'J’ai arrêté là l’optimisation d’algorithme et redirigé le choix vers des critères produit : stabilité, équilibre, lisibilité. Le modèle retenu, un KMeans amorcé par les piliers et entièrement déterministe, donne les groupes les plus séparables de l’étude, avec un macro-F1 de 0.776 et une stabilité à la croissance de 0.715.',
       mesure: {
         legende: 'Accord avec l’annotation des experts (ARI)',
         lignes: [
@@ -67,15 +72,17 @@ export const travaux = {
     },
     {
       titre: 'Concevoir la métrique, pas seulement l’appliquer',
+      court: 'Concevoir la métrique',
       texte:
-        'Les métriques standards de la batterie récompensaient des partitions sans valeur : l’une d’elles réunissait la grande majorité des éléments dans un seul groupe et obtenait pourtant un très bon rang. J’ai conçu un score de recouvrement pondéré par les notes, qui oppose un plafond analytique atteignable aux solutions dégénérées — le seul de la batterie qu’une partition dégénérée ne peut pas remporter. Le classement des méthodes s’en trouve inversé par rapport à la métrique qui faisait autorité jusque-là.',
+        'Les métriques standards de la batterie récompensaient des partitions sans valeur : l’une d’elles réunissait la grande majorité des éléments dans un seul groupe et obtenait pourtant un très bon rang. J’ai conçu un score de recouvrement pondéré par les notes, qui oppose un plafond analytique atteignable aux solutions dégénérées et qui est le seul de la batterie qu’une partition dégénérée ne peut pas remporter. Le classement des méthodes s’en trouve inversé par rapport à la métrique qui faisait autorité jusque-là.',
       lecture:
-        'Une métrique mal choisie peut être gagnée par une solution qui ne fait rien d’utile, par exemple en mettant presque tout dans un seul groupe. Concevoir la métrique avant de comparer les méthodes évite de couronner ce genre de solution — et c’est un travail distinct de celui d’appliquer un algorithme.',
+        'Une métrique mal choisie peut être gagnée par une solution qui ne fait rien d’utile, par exemple en mettant presque tout dans un seul groupe. Concevoir la métrique avant de comparer les méthodes évite de couronner ce genre de solution, et c’est un travail distinct de celui d’appliquer un algorithme.',
     },
     {
       titre: 'UMAP fabrique la structure qu’il mesure',
+      court: 'UMAP et la structure',
       texte:
-        'Même jeu de données, même annotation, deux espaces. Dans l’espace d’origine, la silhouette vaut 0.018 : aucune séparation. Après projection UMAP, elle vaut 0.326, dix-huit fois plus — sans qu’aucune information ait été ajoutée. La décision qui en découle : regrouper dans l’espace d’origine, et réserver les projections à l’affichage.',
+        'Même jeu de données, même annotation, deux espaces. Dans l’espace d’origine, la silhouette vaut 0.018 : aucune séparation. Après projection UMAP, elle vaut 0.326, soit dix-huit fois plus, sans qu’aucune information ait été ajoutée. La décision qui en découle : regrouper dans l’espace d’origine, et réserver les projections à l’affichage.',
       mesure: {
         legende: 'Silhouette, même partition',
         lignes: [
@@ -88,10 +95,11 @@ export const travaux = {
     },
     {
       titre: 'Positionner une marque sans vérité terrain',
+      court: 'Marques sans vérité terrain',
       texte:
-        'Le portefeuille de marques réelles était trop restreint pour évaluer quoi que ce soit dessus. J’ai conçu un protocole de pseudo-marques — des artistes mis de côté jouent le rôle de marques, chaque composant est réentraîné sur le seul ensemble d’apprentissage, et les métriques de rang tiennent compte des ex æquo avec un niveau de hasard explicite. Dix-huit variantes comparées sur trois protocoles, front de Pareto réduit à deux points. Diagnostic au passage : une méthode pondérée tombait sous le niveau du hasard, sa pondération supprimant exactement les dimensions discriminantes.',
+        'Le portefeuille de marques réelles était trop restreint pour évaluer quoi que ce soit dessus. J’ai conçu un protocole de pseudo-marques, dans lequel des artistes mis de côté jouent le rôle de marques. Chaque composant y est réentraîné sur le seul ensemble d’apprentissage, et les métriques de rang tiennent compte des ex æquo avec un niveau de hasard explicite. Dix-huit variantes comparées sur trois protocoles, front de Pareto réduit à deux points. Diagnostic au passage : une méthode pondérée tombait sous le niveau du hasard, sa pondération supprimant exactement les dimensions discriminantes.',
       complement:
-        'Pour les usages qui demandent une probabilité calibrée plutôt qu’un simple classement, j’ai construit une variante bayésienne : un modèle d’appartenance de type Bernoulli-Beta, dont la force de l’a priori est calibrée à partir d’un niveau de confiance visé. Elle répond à une autre question — non pas quel artiste arrive en tête, mais à quel point le rapprochement mérite d’être cru.',
+        'Pour les usages qui demandent une probabilité calibrée plutôt qu’un simple classement, j’ai construit une variante bayésienne : un modèle d’appartenance de type Bernoulli-Beta, dont la force de l’a priori est calibrée à partir d’un niveau de confiance visé. Elle répond à une autre question, qui n’est plus de savoir quel artiste arrive en tête, mais à quel point le rapprochement mérite d’être cru.',
       mesure: {
         legende: 'Précision au premier résultat',
         lignes: [
@@ -99,13 +107,14 @@ export const travaux = {
           { label: 'Niveau du hasard', valeur: 0.14, affichage: '0.140', reference: true },
         ],
         lecture:
-          'Sur dix marques, le moteur place le bon artiste en tête dans près de huit cas, contre un à deux pour un tirage au hasard — cinq fois et demie le niveau du hasard. C’est ce qui rend l’outil utilisable au quotidien : la première proposition est le plus souvent la bonne.',
+          'Sur dix marques, le moteur place le bon artiste en tête dans près de huit cas, contre un à deux pour un tirage au hasard, soit cinq fois et demie le niveau du hasard. C’est ce qui rend l’outil utilisable au quotidien : la première proposition est le plus souvent la bonne.',
       },
     },
     {
+      court: 'Copie absente ou échec',
       titre: 'Distinguer « aucune copie » de « la recherche a échoué »',
       texte:
-        'Chez Agency 1301, sur une chaîne de détection de republication non autorisée de photographies, le cœur du modèle était hérité : mon périmètre était la mesure et la fiabilité des données autour de lui. Le taux de détection additionnait deux situations sans rapport — les photos pour lesquelles aucune copie n’existe, et celles pour lesquelles la recherche avait techniquement échoué. J’ai introduit des statuts d’échec typés, enregistrés avant le lancement de la recherche, et séparé un score non calculable d’un score réellement nul. J’ai également conservé l’ensemble des candidats, retenus comme rejetés, pour que le seuil de décision puisse être réexaminé sans relancer des recherches qui prenaient des heures par lot.',
+        'Chez Agency 1301, sur une chaîne de détection de republication non autorisée de photographies, le cœur du modèle était hérité : mon périmètre était la mesure et la fiabilité des données autour de lui. Le taux de détection additionnait deux situations sans rapport, à savoir les photos pour lesquelles aucune copie n’existe et celles pour lesquelles la recherche avait techniquement échoué. J’ai introduit des statuts d’échec typés, enregistrés avant le lancement de la recherche, et séparé un score non calculable d’un score réellement nul. J’ai également conservé l’ensemble des candidats, retenus comme rejetés, pour que le seuil de décision puisse être réexaminé sans relancer des recherches qui prenaient des heures par lot.',
       lecture:
         'Avant, une panne technique et une absence réelle de copie produisaient le même chiffre : le taux de détection annoncé était donc faux d’une quantité que personne ne pouvait estimer. Après, les deux cas se comptent séparément, et le seuil peut être rejugé sans tout relancer.',
     },
@@ -121,9 +130,9 @@ export const parcours = {
       periode: 'févr. – août 2026',
       contexte: 'Plateforme d’analyse et de prédiction des tendances culturelles.',
       points: [
-        'Méthode de segmentation retenue en production, sélectionnée parmi 15 configurations évaluées sur 8 tests, à l’aide d’un banc de comparaison reproductible que j’ai construit : il rejoue l’étude entière — cinq espaces de représentation, sept annotations d’experts — en deux minutes.',
+        'Méthode de segmentation retenue en production, sélectionnée parmi 15 configurations évaluées sur 8 tests, à l’aide d’un banc de comparaison reproductible que j’ai construit : il rejoue en deux minutes l’étude entière, avec ses cinq espaces de représentation et ses sept annotations d’experts.',
         'Moteur de rapprochement marque – artistes, comparé sur trois protocoles d’évaluation, avec une variante bayésienne pour les usages exigeant une probabilité calibrée.',
-        'Pipeline d’annotation par LLM industrialisé : trois workflows no-code remplacés par un service Python livré en production — suivi du coût par exécution, reprise après échec partiel, vérification automatique des sources citées.',
+        'Pipeline d’annotation par LLM industrialisé : trois workflows no-code remplacés par un service Python livré en production, avec suivi du coût par exécution, reprise après échec partiel et vérification automatique des sources citées.',
         'Service porté par une file de travaux reposant sur PostgreSQL lui-même, sans courtier de messages, et par un exécuteur de migrations maison à registre de sommes de contrôle.',
       ],
     },
@@ -228,12 +237,12 @@ export const formation = {
   diplomes: [
     {
       intitule: 'Cycle ingénieur, première année',
-      etablissement: 'Télécom Paris — Institut Polytechnique de Paris, Palaiseau',
+      etablissement: 'Télécom Paris, Institut Polytechnique de Paris, Palaiseau',
       periode: '2026 – 2029',
     },
     {
       intitule: 'Licence d’informatique, mineure mathématiques',
-      etablissement: 'Sorbonne Université — Faculté des sciences et ingénierie, Paris',
+      etablissement: 'Sorbonne Université, Faculté des sciences et ingénierie, Paris',
       periode: '2023 – 2026',
     },
   ],

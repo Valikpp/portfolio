@@ -3,7 +3,7 @@
 .page {
   max-width: var(--page);
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 5vw, 4rem);
+  padding-inline: var(--marge);
 }
 
 .lien-evitement {
@@ -102,16 +102,7 @@
     max-width: 17ch;
   }
 
-  .accueil__coda {
-  max-width: 38ch;
-  margin-top: var(--e3);
-  font-family: var(--serif);
-  font-size: var(--t-etude);
-  line-height: 1.25;
-  color: var(--ink-soft);
-}
-
-.accueil__corps {
+  .accueil__corps {
     margin-left: calc(var(--rail) + var(--e5));
   }
 }
@@ -123,28 +114,183 @@
   border-top: 1px solid var(--rule);
 }
 
-.section__grille {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--e3);
-}
-
 .section__titre {
   font-family: var(--serif);
   font-size: var(--t-titre);
   letter-spacing: -0.01em;
 }
 
+.section__contenu {
+  margin-top: var(--e4);
+}
+
+/* Cibles des liens du sommaire : ne pas les coller au bord (ni sous la barre mobile). */
+.section,
+.etude,
+.poste {
+  scroll-margin-top: calc(var(--barre-sommaire) + var(--e2));
+}
+
 @media (min-width: 60em) {
-  .section__grille {
+  .plan {
+    display: grid;
     grid-template-columns: var(--rail) minmax(0, 1fr);
     gap: var(--e5);
   }
 
-  .section__titre {
-    position: sticky;
-    top: var(--e3);
+  .section,
+  .etude,
+  .poste {
+    scroll-margin-top: var(--e3);
+  }
+}
+
+/* Sommaire -------------------------------------------------------------- */
+
+.sommaire {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin-inline: calc(-1 * var(--marge));
+  padding-inline: var(--marge);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.sommaire__bouton {
+  display: flex;
+  align-items: baseline;
+  gap: var(--e1);
+  width: 100%;
+  min-height: var(--barre-sommaire);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--t-petit);
+  text-align: left;
+  cursor: pointer;
+  padding-block: 0.8rem;
+}
+
+.sommaire__partie {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-soft);
+}
+
+.sommaire__partie::before {
+  content: '· ';
+}
+
+/* Chevron : deux côtés d'un carré, tournés. */
+.sommaire__bouton::after {
+  content: '';
+  flex: none;
+  align-self: center;
+  width: 0.4em;
+  height: 0.4em;
+  margin-left: auto;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-25%) rotate(45deg);
+}
+
+.sommaire[data-ouvert] .sommaire__bouton::after {
+  transform: translateY(25%) rotate(-135deg);
+}
+
+.sommaire__panneau {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: var(--e1) var(--marge) var(--e3);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.sommaire[data-ouvert] .sommaire__panneau {
+  display: block;
+}
+
+/* Le filet et son repère ; les positions du repère sont posées en JS. */
+.sommaire__rail {
+  position: relative;
+  border-left: 1px solid var(--rule);
+}
+
+.sommaire__repere {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 2px;
+  background: var(--ink);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sommaire__repere {
+    transition:
+      transform 0.25s ease,
+      height 0.25s ease;
+  }
+}
+
+.sommaire__lien {
+  display: block;
+  padding: 0.3rem 0 0.3rem var(--e2);
+  font-size: var(--t-petit);
+  line-height: 1.35;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.sommaire__lien--partie {
+  padding-block: 0.2rem;
+  padding-left: calc(var(--e2) + var(--e1));
+  font-size: var(--t-meta);
+}
+
+.sommaire__lien:hover,
+.sommaire__lien[data-actif] {
+  color: var(--ink);
+}
+
+.sommaire__parties {
+  margin-block: 0.1rem var(--e1);
+}
+
+@media (min-width: 60em) {
+  .sommaire {
+    top: var(--e5);
     align-self: start;
+    max-height: calc(100vh - 2 * var(--e5));
+    overflow-y: auto;
+    margin: var(--e6) 0 0;
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+
+  .sommaire__bouton {
+    display: none;
+  }
+
+  .sommaire__panneau {
+    display: block;
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+    background: none;
+    border: 0;
   }
 }
 
@@ -243,8 +389,8 @@
 
 .mesure__piste {
   position: relative;
-  height: 6px;
-  margin-top: 6px;
+  height: 0.375rem;
+  margin-top: 0.375rem;
   background: color-mix(in srgb, var(--rule) 55%, transparent);
 }
 
@@ -328,7 +474,7 @@
   position: absolute;
   left: 0;
   top: 0.62em;
-  width: 10px;
+  width: 0.625rem;
   height: 1px;
   background: var(--baseline);
 }
@@ -456,7 +602,9 @@
   justify-content: space-between;
   gap: var(--e1) var(--e3);
   padding-block: var(--e3) var(--e5);
-  border-top: 1px solid var(--rule);
+  /* Filet sans les marges latérales : il s'arrête aux mêmes bords que le texte. */
+  background: linear-gradient(var(--rule), var(--rule)) center top / calc(100% - 2 * var(--marge))
+    1px no-repeat;
   color: var(--ink-soft);
   font-size: var(--t-meta);
 }
