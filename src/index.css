@@ -28,7 +28,7 @@
      L'ultramarine ne sert qu'aux valeurs mesurées ; le gris, aux références. */
   --paper: #edeff1;
   --ink: #0f1621;
-  --ink-soft: #58657a;
+  --ink-soft: #4a5669;
   --rule: #c7ced7;
   --ultramarine: #002fa7;
   --baseline: #a3adbb;
@@ -52,10 +52,9 @@
   --e6: 4.5rem;
   --e7: 7rem;
 
-  --rail: 12.5rem;
   --page: 70rem;
   --marge: clamp(1.25rem, 5vw, 4rem);
-  --barre-sommaire: 3rem;
+  --entete: 3.5rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
